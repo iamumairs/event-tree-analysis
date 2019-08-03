@@ -1,0 +1,43 @@
+*********************************************************************
+                                System Description
+*********************************************************************
+  Sensor_1      Sensor_2
+0     open   misaligned 
+1    short  low_voltage 
+2    stuck         noisy
+ 
+*********************************************************************
+                                Event Tree Graph
+*********************************************************************
+
+                   /-misaligned
+                  |
+         /- /open-|--low_voltage
+        |         |
+        |          \-noisy
+        |
+        |           /-misaligned
+        |          |
+-SYSTEM-|-- /short-|--low_voltage
+        |          |
+        |           \-noisy
+        |
+        |           /-misaligned
+        |          |
+         \- /stuck-|--low_voltage
+                   |
+                    \-noisy
+ 
+*********************************************************************
+                                All Paths
+*********************************************************************
+
+Path 1 = ('open', 'misaligned ')
+Path 2 = ('open', 'low_voltage ')
+Path 3 = ('open', 'noisy')
+Path 4 = ('short', 'misaligned ')
+Path 5 = ('short', 'low_voltage ')
+Path 6 = ('short', 'noisy')
+Path 7 = ('stuck', 'misaligned ')
+Path 8 = ('stuck', 'low_voltage ')
+Path 9 = ('stuck', 'noisy')

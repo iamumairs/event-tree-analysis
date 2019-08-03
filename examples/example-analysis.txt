@@ -1,0 +1,207 @@
+*********************************************************************
+                                System Description
+*********************************************************************
+     CT    R   TC_1   TC_2   CB_1   CB_2
+0  CT_O  R_O  TC_1O  TC_2O  CB_1O  CB_2O
+1  CT_F  R_F  TC_1F  TC_2F  CB_1F  CB_2F
+ 
+*********************************************************************
+                                Event Tree Graph
+*********************************************************************
+
+                                                             /-CB_2O
+                                                  /- /CB_1O-|
+                                                 |           \-CB_2F
+                                       /- /TC_2O-|
+                                      |          |           /-CB_2O
+                                      |           \- /CB_1F-|
+                                      |                      \-CB_2F
+                            /- /TC_1O-|
+                           |          |                      /-CB_2O
+                           |          |           /- /CB_1O-|
+                           |          |          |           \-CB_2F
+                           |           \- /TC_2F-|
+                           |                     |           /-CB_2O
+                           |                      \- /CB_1F-|
+                           |                                 \-CB_2F
+                   /- /R_O-|
+                  |        |                                 /-CB_2O
+                  |        |                      /- /CB_1O-|
+                  |        |                     |           \-CB_2F
+                  |        |           /- /TC_2O-|
+                  |        |          |          |           /-CB_2O
+                  |        |          |           \- /CB_1F-|
+                  |        |          |                      \-CB_2F
+                  |         \- /TC_1F-|
+                  |                   |                      /-CB_2O
+                  |                   |           /- /CB_1O-|
+                  |                   |          |           \-CB_2F
+                  |                    \- /TC_2F-|
+                  |                              |           /-CB_2O
+                  |                               \- /CB_1F-|
+                  |                                          \-CB_2F
+         /- /CT_O-|
+        |         |                                          /-CB_2O
+        |         |                               /- /CB_1O-|
+        |         |                              |           \-CB_2F
+        |         |                    /- /TC_2O-|
+        |         |                   |          |           /-CB_2O
+        |         |                   |           \- /CB_1F-|
+        |         |                   |                      \-CB_2F
+        |         |         /- /TC_1O-|
+        |         |        |          |                      /-CB_2O
+        |         |        |          |           /- /CB_1O-|
+        |         |        |          |          |           \-CB_2F
+        |         |        |           \- /TC_2F-|
+        |         |        |                     |           /-CB_2O
+        |         |        |                      \- /CB_1F-|
+        |         |        |                                 \-CB_2F
+        |          \- /R_F-|
+        |                  |                                 /-CB_2O
+        |                  |                      /- /CB_1O-|
+        |                  |                     |           \-CB_2F
+        |                  |           /- /TC_2O-|
+        |                  |          |          |           /-CB_2O
+        |                  |          |           \- /CB_1F-|
+        |                  |          |                      \-CB_2F
+        |                   \- /TC_1F-|
+        |                             |                      /-CB_2O
+        |                             |           /- /CB_1O-|
+        |                             |          |           \-CB_2F
+        |                              \- /TC_2F-|
+        |                                        |           /-CB_2O
+        |                                         \- /CB_1F-|
+        |                                                    \-CB_2F
+-SYSTEM-|
+        |                                                    /-CB_2O
+        |                                         /- /CB_1O-|
+        |                                        |           \-CB_2F
+        |                              /- /TC_2O-|
+        |                             |          |           /-CB_2O
+        |                             |           \- /CB_1F-|
+        |                             |                      \-CB_2F
+        |                   /- /TC_1O-|
+        |                  |          |                      /-CB_2O
+        |                  |          |           /- /CB_1O-|
+        |                  |          |          |           \-CB_2F
+        |                  |           \- /TC_2F-|
+        |                  |                     |           /-CB_2O
+        |                  |                      \- /CB_1F-|
+        |                  |                                 \-CB_2F
+        |          /- /R_O-|
+        |         |        |                                 /-CB_2O
+        |         |        |                      /- /CB_1O-|
+        |         |        |                     |           \-CB_2F
+        |         |        |           /- /TC_2O-|
+        |         |        |          |          |           /-CB_2O
+        |         |        |          |           \- /CB_1F-|
+        |         |        |          |                      \-CB_2F
+        |         |         \- /TC_1F-|
+        |         |                   |                      /-CB_2O
+        |         |                   |           /- /CB_1O-|
+        |         |                   |          |           \-CB_2F
+        |         |                    \- /TC_2F-|
+        |         |                              |           /-CB_2O
+        |         |                               \- /CB_1F-|
+        |         |                                          \-CB_2F
+         \- /CT_F-|
+                  |                                          /-CB_2O
+                  |                               /- /CB_1O-|
+                  |                              |           \-CB_2F
+                  |                    /- /TC_2O-|
+                  |                   |          |           /-CB_2O
+                  |                   |           \- /CB_1F-|
+                  |                   |                      \-CB_2F
+                  |         /- /TC_1O-|
+                  |        |          |                      /-CB_2O
+                  |        |          |           /- /CB_1O-|
+                  |        |          |          |           \-CB_2F
+                  |        |           \- /TC_2F-|
+                  |        |                     |           /-CB_2O
+                  |        |                      \- /CB_1F-|
+                  |        |                                 \-CB_2F
+                   \- /R_F-|
+                           |                                 /-CB_2O
+                           |                      /- /CB_1O-|
+                           |                     |           \-CB_2F
+                           |           /- /TC_2O-|
+                           |          |          |           /-CB_2O
+                           |          |           \- /CB_1F-|
+                           |          |                      \-CB_2F
+                            \- /TC_1F-|
+                                      |                      /-CB_2O
+                                      |           /- /CB_1O-|
+                                      |          |           \-CB_2F
+                                       \- /TC_2F-|
+                                                 |           /-CB_2O
+                                                  \- /CB_1F-|
+                                                             \-CB_2F
+ 
+*********************************************************************
+                                All Paths
+*********************************************************************
+
+Path 1 = ('CT_O', 'R_O', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 2 = ('CT_O', 'R_O', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 3 = ('CT_O', 'R_O', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 4 = ('CT_O', 'R_O', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 5 = ('CT_O', 'R_O', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 6 = ('CT_O', 'R_O', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 7 = ('CT_O', 'R_O', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 8 = ('CT_O', 'R_O', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 9 = ('CT_O', 'R_O', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 10 = ('CT_O', 'R_O', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 11 = ('CT_O', 'R_O', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 12 = ('CT_O', 'R_O', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 13 = ('CT_O', 'R_O', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 14 = ('CT_O', 'R_O', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 15 = ('CT_O', 'R_O', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 16 = ('CT_O', 'R_O', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 17 = ('CT_O', 'R_F', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 18 = ('CT_O', 'R_F', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 19 = ('CT_O', 'R_F', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 20 = ('CT_O', 'R_F', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 21 = ('CT_O', 'R_F', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 22 = ('CT_O', 'R_F', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 23 = ('CT_O', 'R_F', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 24 = ('CT_O', 'R_F', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 25 = ('CT_O', 'R_F', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 26 = ('CT_O', 'R_F', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 27 = ('CT_O', 'R_F', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 28 = ('CT_O', 'R_F', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 29 = ('CT_O', 'R_F', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 30 = ('CT_O', 'R_F', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 31 = ('CT_O', 'R_F', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 32 = ('CT_O', 'R_F', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 33 = ('CT_F', 'R_O', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 34 = ('CT_F', 'R_O', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 35 = ('CT_F', 'R_O', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 36 = ('CT_F', 'R_O', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 37 = ('CT_F', 'R_O', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 38 = ('CT_F', 'R_O', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 39 = ('CT_F', 'R_O', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 40 = ('CT_F', 'R_O', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 41 = ('CT_F', 'R_O', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 42 = ('CT_F', 'R_O', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 43 = ('CT_F', 'R_O', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 44 = ('CT_F', 'R_O', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 45 = ('CT_F', 'R_O', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 46 = ('CT_F', 'R_O', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 47 = ('CT_F', 'R_O', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 48 = ('CT_F', 'R_O', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 49 = ('CT_F', 'R_F', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 50 = ('CT_F', 'R_F', 'TC_1O', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 51 = ('CT_F', 'R_F', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 52 = ('CT_F', 'R_F', 'TC_1O', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 53 = ('CT_F', 'R_F', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 54 = ('CT_F', 'R_F', 'TC_1O', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 55 = ('CT_F', 'R_F', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 56 = ('CT_F', 'R_F', 'TC_1O', 'TC_2F', 'CB_1F', 'CB_2F')
+Path 57 = ('CT_F', 'R_F', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2O')
+Path 58 = ('CT_F', 'R_F', 'TC_1F', 'TC_2O', 'CB_1O', 'CB_2F')
+Path 59 = ('CT_F', 'R_F', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2O')
+Path 60 = ('CT_F', 'R_F', 'TC_1F', 'TC_2O', 'CB_1F', 'CB_2F')
+Path 61 = ('CT_F', 'R_F', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2O')
+Path 62 = ('CT_F', 'R_F', 'TC_1F', 'TC_2F', 'CB_1O', 'CB_2F')
+Path 63 = ('CT_F', 'R_F', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2O')
+Path 64 = ('CT_F', 'R_F', 'TC_1F', 'TC_2F', 'CB_1F', 'CB_2F')

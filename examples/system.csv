@@ -1,0 +1,4 @@
+Sensor_1,Sensor_2
+open,misaligned 
+short,low_voltage 
+stuck,noisy
