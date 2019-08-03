@@ -1,3 +1,15 @@
+"""
+===============================================================================
+                            Event Tree Analysis Tool
+                               (c) Umair Siddique
+
+Licence: check licence
+
+To DO - Tree Pruning, Probablistic Analysis, Mapping to FT, More Safety Aspects
+===============================================================================
+
+"""
+
 from ete3 import Tree, TreeStyle
 import pandas
 import argparse
@@ -20,8 +32,6 @@ def str_append_helper (s,l):
     for i in l:
         out.append (add_paranthesis(s + i))
     return(out)
-
-
 
 def make_tree (sys):
     """
@@ -49,8 +59,6 @@ def make_tree (sys):
             str_iter = [next_iter]
     return(str_iter)
 
-# df.head() -- gives full system
-
 def get_system(name):
     data = name
     df = pandas.read_csv(data)
@@ -62,8 +70,11 @@ def get_system(name):
     return (df,components,comp_states,all_paths)
 
 
-
-
+"""
+===============================================================================
+                Argument parsing and pretty-printing work
+===============================================================================
+"""
 
 parser = argparse.ArgumentParser(description='Event Tree Analysis Tool')
 
@@ -73,6 +84,7 @@ parser.add_argument('-o', action="store", dest="out",
                 help='Name of the output analysis file')
 
 args = parser.parse_args()
+
 
 sys_txt = '''\
 *********************************************************************
@@ -94,6 +106,11 @@ paths_txt = '''\
 
 some_space = '''\n \n'''
 
+"""
+===============================================================================
+                                Analysis
+===============================================================================
+"""
 
 gsystem = get_system (args.system)
 t = make_tree(gsystem[2])
@@ -101,7 +118,6 @@ tre = t[0] + 'SYSTEM' + ';'
 rtree = Tree(tre, format=1)
 
 outfile = open(args.out, "w+")
-
 
 outfile.write(sys_txt)
 outfile.write(gsystem[0].to_string())
@@ -115,29 +131,8 @@ outfile.write(some_space)
 outfile.write(paths_txt)
 outfile.write('\n')
 
-
 m = 1
 for j in gsystem[3]:
     n = 'Path ' + str(m) + ' = '
     outfile.write(n + str(j) + '\n')
     m = m + 1
-
-
-#print (rtree.get_ascii(show_internal=True))
-
-
-
-
-
-
-
-
-#    ex = [l1,l2,l3,l4,l5]
-#    xx = make_tree (ex)
-#    print(xx[0])
-
-#    tre = xx[0] + 'SYSTEM' + ';'
-
-#    rtree = Tree(tre, format=1)
-
-#    print (rtree.get_ascii(show_internal=True))
