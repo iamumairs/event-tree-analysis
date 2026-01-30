@@ -10,7 +10,6 @@ To DO - Tree Pruning, Probablistic Analysis, Mapping to FT, More Safety Aspects
 
 """
 
-from ete3 import Tree, TreeStyle
 import pandas
 import argparse
 import itertools
@@ -46,7 +45,8 @@ def make_tree (sys):
     and convert this to "Newick Tree" format which can then be visualized in a
     different ways using "ete3" library.
     """
-    sys.reverse()
+    # use a reversed copy to avoid mutating the caller's data
+    sys = list(reversed(sys))
     head, *tail =sys
     s = (tuple(head))
     init_str = add_paranthesis(add_paranthesis (','.join(s)))
@@ -65,9 +65,10 @@ def get_system(name):
     comp_states = []
     components = df.columns.tolist()
     for i in components:
-        comp_states.append(list(df[i]))
+        # strip whitespace and ensure values are strings
+        comp_states.append([str(s).strip() for s in df[i].tolist()])
     all_paths = list(itertools.product(*comp_states))
-    return (df,components,comp_states,all_paths)
+    return (df, components, comp_states, all_paths)
 
 
 """
@@ -75,16 +76,6 @@ def get_system(name):
                 Argument parsing and pretty-printing work
 ===============================================================================
 """
-
-parser = argparse.ArgumentParser(description='Event Tree Analysis Tool')
-
-parser.add_argument('-s', action="store", dest="system",
-                help='System Description -- components and associated states')
-parser.add_argument('-o', action="store", dest="out",
-                help='Name of the output analysis file')
-
-args = parser.parse_args()
-
 
 sys_txt = '''\
 *********************************************************************
@@ -108,31 +99,57 @@ some_space = '''\n \n'''
 
 """
 ===============================================================================
-                                Analysis
+                                Analysis (guarded)
 ===============================================================================
 """
 
-gsystem = get_system (args.system)
-t = make_tree(gsystem[2])
-tre = t[0] + 'SYSTEM' + ';'
-rtree = Tree(tre, format=1)
+def main(argv=None):
+    """Main CLI entry point."""
+    import argparse
+    parser = argparse.ArgumentParser(description='Event Tree Analysis Tool')
 
-outfile = open(args.out, "w+")
+    parser.add_argument('-s', '--system', required=True, dest='system',
+                        help='System Description -- components and associated states')
+    parser.add_argument('-o', '--out', required=True, dest='out',
+                        help='Name of the output analysis file')
 
-outfile.write(sys_txt)
-outfile.write(gsystem[0].to_string())
+    args = parser.parse_args(argv)
 
-outfile.write(some_space)
-outfile.write(et_txt)
+    try:
+        gsystem = get_system(args.system)
+    except Exception as exc:
+        print(f"Error reading system file: {exc}")
+        raise SystemExit(1)
 
-outfile.write(rtree.get_ascii(show_internal=True))
+    t = make_tree(gsystem[2])
+    tre = t[0] + 'SYSTEM' + ';'
 
-outfile.write(some_space)
-outfile.write(paths_txt)
-outfile.write('\n')
+    # lazy import of ete3 so tests don't require it
+    try:
+        from ete3 import Tree
+    except Exception:
+        Tree = None
 
-m = 1
-for j in gsystem[3]:
-    n = 'Path ' + str(m) + ' = '
-    outfile.write(n + str(j) + '\n')
-    m = m + 1
+    with open(args.out, 'w') as outfile:
+        outfile.write(sys_txt)
+        outfile.write(gsystem[0].to_string())
+
+        outfile.write(some_space)
+        outfile.write(et_txt)
+
+        if Tree is not None:
+            rtree = Tree(tre, format=1)
+            outfile.write(rtree.get_ascii(show_internal=True))
+        else:
+            outfile.write("[ete3 not installed — ASCII tree unavailable]\n")
+
+        outfile.write(some_space)
+        outfile.write(paths_txt)
+        outfile.write('\n')
+
+        for m, j in enumerate(gsystem[3], start=1):
+            outfile.write(f'Path {m} = {j}\n')
+
+
+if __name__ == '__main__':
+    main()

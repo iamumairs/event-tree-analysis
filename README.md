@@ -1,89 +1,97 @@
-# Event Tree Analysis
-This is a simple code of event tree analysis. I have a plan to add more features in future.
+# Event Tree Analysis ✅
 
-## System Description
+**Event Tree Analysis** is a small, dependency-light Python CLI to convert a CSV system description (components and their possible states) into an event tree representation and a list of all event paths. It was originally written by Umair Siddique and is intended as a minimal tool for teaching, prototyping, or integrating into larger safety analysis workflows.
 
-A system can be given in the following form in a .csv file:
+---
 
-```
-            component 1, component 2
-            ---------------------------
-           |  Sensor_1  , Sensor_2     (first row for component names)
-  State 1  |   open     ,  misaligned
-  State 2  |   short    ,  low_voltage
-  State 3  |   stuck    ,  noisy
-  
-  ```
+## 🔧 Features
 
-  ## Usage
+- Parse a CSV system description where each column is a component and each row lists a state for that component.
+- Generate a Newick-like event tree and print an ASCII visualization (via `ete3`).
+- Print all possible event paths (cartesian product of component states).
+- Small, single-file CLI (`et_tool.py`) with no heavy framework requirements.
 
-  ```
+---
 
-  usage: et_tool.py [-h] [-s SYSTEM] [-o OUT]
+## 📦 Requirements
 
-Event Tree Analysis Tool
+Install the runtime requirements (recommended to use a virtual environment):
 
-optional arguments:
-
-  -h, --help  show this help message and exit
-  -s SYSTEM   System Description -- components and associated states
-  -o OUT      Name of the output analysis file
-
-  ```
-
-## Usage
-
-### Example
-```
-python3 et_tool.py  -s=system.csv -o=analysis.txt
-
+```bash
+pip install -r requirements.txt
 ```
 
-### Output
+Notes:
+- `ete3` is used for building and rendering tree ASCII art.
+- `pandas` is used for CSV parsing.
+
+---
+
+## 📝 CSV System Format
+
+The CSV should have component names as the header row and each following row contains a state for each component. Example `system.csv`:
+
+```csv
+Sensor_1,Sensor_2
+open,misaligned
+short,low_voltage
+stuck,noisy
+```
+
+---
+
+## ▶️ Usage
+
+```bash
+python3 et_tool.py -s system.csv -o analysis.txt
+```
+
+This generates `analysis.txt` containing:
+- A printed system description (table)
+- ASCII event tree
+- A numbered list of all possible event paths
+
+---
+
+## 🧪 Example
+
+Given the `system.csv` above the output contains the system table, an ASCII event tree and the set of paths such as:
 
 ```
-*********************************************************************
-                                System Description
-*********************************************************************
-  Sensor_1      Sensor_2
-0     open   misaligned
-1    short  low_voltage
-2    stuck         noisy
-
-*********************************************************************
-                                Event Tree Graph
-*********************************************************************
-
-                   /-misaligned
-                  |
-         /- /open-|--low_voltage
-        |         |
-        |          \-noisy
-        |
-        |           /-misaligned
-        |          |
--SYSTEM-|-- /short-|--low_voltage
-        |          |
-        |           \-noisy
-        |
-        |           /-misaligned
-        |          |
-         \- /stuck-|--low_voltage
-                   |
-                    \-noisy
-
-*********************************************************************
-                                All Paths
-*********************************************************************
-
-Path 1 = ('open', 'misaligned ')
-Path 2 = ('open', 'low_voltage ')
-Path 3 = ('open', 'noisy')
-Path 4 = ('short', 'misaligned ')
-Path 5 = ('short', 'low_voltage ')
-Path 6 = ('short', 'noisy')
-Path 7 = ('stuck', 'misaligned ')
-Path 8 = ('stuck', 'low_voltage ')
-Path 9 = ('stuck', 'noisy')
-
+Path 1 = ('open', 'misaligned')
+Path 2 = ('open', 'low_voltage')
+...
 ```
+
+---
+
+## ✅ Next steps / Suggested improvements
+
+Here are a few ways to revive & improve the project (good starting tasks):
+
+1. Add unit tests for `get_system`, `make_tree`, and helper functions.
+2. Add command-line validation and better error messages (missing file, malformed CSV).
+3. Add optional JSON or DOT export of the event tree for integration with other tools.
+4. Add probabilities for states and compute path probabilities & minimal cut sets.
+5. Add a GitHub Actions CI workflow for tests and linting.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Please open issues for bugs or feature requests and submit a PR with tests and a short description.
+
+---
+
+## 📄 License
+
+Add a `LICENSE` file to the project root. (If you want, I can add a permissive MIT license for you.)
+
+---
+
+If you'd like, I can also:
+- Add a small unit test suite and CI config ✅
+- Clean up `et_tool.py` (fix typos, add argument validation and logging) ✅
+- Add an example script to generate visual output (PNG/SVG) via `ete3` (requires Graphviz) ✅
+
+Would you like me to implement any of those next?
